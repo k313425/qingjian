@@ -577,8 +577,9 @@ var ICard = /** @class */ (function () {
                 availWidth = window.screen.availWidth;
             var height = outerHeight?outerHeight:availHeight;
             if (!browser.versions.wx) {
-                alert(outerHeight);
-                alert(availHeight);
+                alert("innerHeight "+innerHeight);
+                alert("outerHeight "+outerHeight);
+                alert("availHeight "+availHeight);
                 height = availHeight;
             }
             var phoneScale = parseInt(window.screen.width)/720;
