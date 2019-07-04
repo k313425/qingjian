@@ -577,13 +577,14 @@ var ICard = /** @class */ (function () {
                 availWidth = window.screen.availWidth;
             var height = outerHeight?outerHeight:availHeight;
             if (!browser.versions.wx) {
-                alert(height);
                 // height = availHeight;
             }
             var phoneScale = parseInt(window.screen.width)/720;
             var scaleHeightPx = height/phoneScale;
             if (browser.versions.iPhone || browser.versions.iPad || browser.versions.ios) {
-                $('#invitation-container').css('height',scaleHeightPx+'px');
+                if (!browser.versions.wx) {
+                    $('#invitation-container').css('height',scaleHeightPx+'px');
+                }
             }else if(browser.versions.android) {
                 $('#invitation-container').css('height',scaleHeightPx+'px');
             }else{
