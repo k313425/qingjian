@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="test">
+    <meta name="keywords" content="test">
+    <meta name="csrf-param" content="_csrf">
+    <meta name="csrf-token" content="RmpEcVptMUIJLhA8E11ZCwgrBTl3I2IaFB4iNAAPZnZwHg8oACxjBA==">
+    <title>404</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <link rel="stylesheet" href="/static/normalize/5.0.0/normalize.css">
+    <link rel="stylesheet" href="/static/swiper/css/swiper.css">
+    <link rel="stylesheet" href="/static/swiper/css/animate.css">
+    <link rel="stylesheet" href="/static/swiper/css/extend.animate.css">
+    <link rel="stylesheet" href="/static/css/weui.min.css">
+    <link rel="stylesheet" href="/static/js/skin/layer.css" id="layui_layer_skinlayercss">
+    <link rel="stylesheet" href="/static/css/icard.css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1j3fcjR03bVKATOKMWIKM4SC"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/swiper/js/swiper.min.js"></script>
+    <script src="/static/swiper/js/swiper.animate1.0.3.min.js"></script>
+    <script src="/static/js/layer.min.js"></script>
+    <script src="/static/js/emoji.min.js"></script>
+    <script src="/static/js/icard.js"></script>
+    <script>
+        //var phoneScale = parseInt(window.screen.width)/720;
+        //document.write('<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+'">');
+        function init_viewport() {
+            if (navigator.userAgent.indexOf('Android') != -1) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var width = window.outerWidth == 0 ? window.screen.width : window.outerWidth;
+                    var phoneScale = parseInt(width) / 720;
+                    document.write('<meta name="viewport" content="width=720, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=720, target-densitydpi=device-dpi, user-scalable=0">');
+                }
+            } else if (navigator.userAgent.indexOf('iPhone') != -1) {
+                var phoneScale = parseInt(window.screen.width) / 720;
+                document.write('<meta name="viewport" content="width=720, initial-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', user-scalable=0" /> ');
+            } else {
+                document.write('<meta name="viewport" content="width=720, height=1280, initial-scale=1" /> ');
+            }
+        }
+        init_viewport();
+    </script>
+</head>
+<body>
+<div class="swiper-container" id="invitation-container">
+    <div class="box-404">
+        <div class="bg-404"></div>
+        <p>您访问的页面已下线</p>
+    </div>
+</div>
+<style>
+    .box-404 {
+        font-size: 35px;
+        color: #686868;
+        text-align: center;
+    }
+    .bg-404 {
+        margin: 200px auto 30px;
+        width: 496px;
+        height: 496px;
+        background: url("/static/img/bg-404.jpg") no-repeat center center;
+    }
+</style>
+</body>
+</html>

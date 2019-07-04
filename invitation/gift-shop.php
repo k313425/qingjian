@@ -1,0 +1,61 @@
+<?php
+
+$date=[
+    "code"=>200,
+    "msg"=>"ok",
+    "jumpUrl"=>"",
+    "data"=>[
+        [
+            "id"=>"1",
+            "img"=>"/static/gift/1.png",
+            "title"=>"玫瑰花1",
+            "wishWord"=>"百年好合1",
+        ],
+        [
+            "id"=>"2",
+            "img"=>"/static/gift/1.png",
+            "title"=>"玫瑰花1",
+            "wishWord"=>"百年好合1",
+        ],
+        [
+            "id"=>"3",
+            "img"=>"/static/gift/1.png",
+            "title"=>"玫瑰花1",
+            "wishWord"=>"百年好合1",
+        ],
+        [
+            "id"=>"4",
+            "img"=>"/static/gift/1.png",
+            "title"=>"玫瑰花1",
+            "wishWord"=>"百年好合1",
+        ],
+        [
+            "id"=>"5",
+            "img"=>"/static/gift/1.png",
+            "title"=>"玫瑰花1",
+            "wishWord"=>"百年好合1",
+        ],
+        [
+            "id"=>"8",
+            "img"=>"/static/gift/1.png",
+            "title"=>"玫瑰花1",
+            "wishWord"=>"百年好合1",
+        ],
+        [
+            "id"=>"6",
+            "img"=>"/static/gift/1.png",
+            "title"=>"玫瑰花1",
+            "wishWord"=>"百年好合1",
+        ],
+        [
+            "id"=>"7",
+            "img"=>"/static/gift/1.png",
+            "title"=>"玫瑰花1",
+            "wishWord"=>"百年好合1",
+        ]
+    ]
+];
+
+echo json_encode($date,true);
+
+?>

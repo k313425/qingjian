@@ -1,0 +1,29 @@
+/**  spin  **/
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+.spin {
+  -webkit-animation: spin 2s 1 linear;
+  animation: spin 2s 1 linear;
+  -webkit-animation-name: spin;
+  animation-name: spin;
+}
+
+/**  spin  **/
