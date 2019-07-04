@@ -461,7 +461,7 @@ var ICard = /** @class */ (function () {
             if (!that.context) {
                 that.context = new (window.AudioContext || window.webkitAudioContext)();
                 that.playAudio(that.context, that.musicUrl);
-                console.log(that.context);
+                // console.log(that.context);
             } else {
                 if (!that.play) {
                     this.context.resume();
@@ -576,12 +576,15 @@ var ICard = /** @class */ (function () {
                 availHeight = window.screen.availHeight,
                 availWidth = window.screen.availWidth;
             var height = outerHeight?outerHeight:availHeight;
+            if (!browser.versions.wx) {
+                alert(height);
+                height = availHeight;
+                alert(height);
+            }
             var phoneScale = parseInt(window.screen.width)/720;
             var scaleHeightPx = height/phoneScale;
             if (browser.versions.iPhone || browser.versions.iPad || browser.versions.ios) {
-                if (!browser.versions.wx) {
-                    $('#invitation-container').css('height',scaleHeightPx+'px');
-                }
+                $('#invitation-container').css('height',scaleHeightPx+'px');
             }else if(browser.versions.android) {
                 $('#invitation-container').css('height',scaleHeightPx+'px');
             }else{
