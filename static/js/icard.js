@@ -583,7 +583,7 @@ var ICard = /** @class */ (function () {
             var scaleHeightPx = height/phoneScale;
             if (browser.versions.iPhone || browser.versions.iPad || browser.versions.ios) {
                 if (!browser.versions.wx) {
-                    $('#invitation-container').css('height', (scaleHeightPx - 100) +'px');
+                    $('#invitation-container').css('height', (scaleHeightPx - 160) +'px');
                 }
             }else if(browser.versions.android) {
                 $('#invitation-container').css('height',scaleHeightPx+'px');
