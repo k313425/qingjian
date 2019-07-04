@@ -577,6 +577,7 @@ var ICard = /** @class */ (function () {
                 availWidth = window.screen.availWidth;
             var height = outerHeight?outerHeight:availHeight;
             if (!browser.versions.wx) {
+                alert(screenHeight);
                 alert(height);
                 height = availHeight;
                 alert(height);
