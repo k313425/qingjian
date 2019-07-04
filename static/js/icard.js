@@ -576,13 +576,12 @@ var ICard = /** @class */ (function () {
                 availHeight = window.screen.availHeight,
                 availWidth = window.screen.availWidth;
             var height = outerHeight?outerHeight:availHeight;
-            if (!browser.versions.wx) {
-                // height = screenHeight;
-            }
             var phoneScale = parseInt(window.screen.width)/720;
             var scaleHeightPx = height/phoneScale;
             if (browser.versions.iPhone || browser.versions.iPad || browser.versions.ios) {
                 if (!browser.versions.wx) {
+                    alert(scaleHeightPx);
+                    $('#invitation-container').css('height',scaleHeightPx+'px');
                     window.onload = function() {
                         setTimeout(function() {
                             window.scrollTo(0, 1)
