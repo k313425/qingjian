@@ -579,12 +579,14 @@ var ICard = /** @class */ (function () {
             var phoneScale = parseInt(window.screen.width)/720;
             var scaleHeightPx = height/phoneScale;
             if (browser.versions.iPhone || browser.versions.iPad || browser.versions.ios) {
+            
             }else if(browser.versions.android) {
                 $('#invitation-container').css('height',scaleHeightPx+'px');
             }else{
                 $('#invitation-container').css('height',scaleHeightPx+'px');
             }
-            if (!browser.versions.wx) {
+    
+            if (!browser.versions.wx && browser.versions.ios) {
                 $('#invitation-container').css('height',(scaleHeightPx - 200)+'px');
             }
         },
