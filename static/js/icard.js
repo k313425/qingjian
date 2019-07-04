@@ -580,7 +580,7 @@ var ICard = /** @class */ (function () {
                 alert("innerHeight "+innerHeight);
                 alert("outerHeight "+outerHeight);
                 alert("availHeight "+availHeight);
-                height = availHeight;
+                alert("height "+height);
             }
             var phoneScale = parseInt(window.screen.width)/720;
             var scaleHeightPx = height/phoneScale;
