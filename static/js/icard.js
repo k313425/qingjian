@@ -549,6 +549,7 @@ var ICard = /** @class */ (function () {
                     iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
                     iPad: u.indexOf('iPad') > -1, //是否iPad,
                     wx: u.indexOf('MicroMessenger') > -1, //是否微信,
+                    safari: u.indexOf('Safari') > -1, //是否Safari,
                 };
             }(),
         },
@@ -581,13 +582,13 @@ var ICard = /** @class */ (function () {
             if (browser.versions.iPhone || browser.versions.iPad || browser.versions.ios) {
             
             }else if(browser.versions.android) {
-                $('#invitation-container').css('height',scaleHeightPx+'px');
+                $('#invitation-container').css('height','100%');
             }else{
-                $('#invitation-container').css('height',scaleHeightPx+'px');
+                $('#invitation-container').css('height','100%');
             }
     
-            if (!browser.versions.wx && browser.versions.ios) {
-                $('#invitation-container').css('height',(scaleHeightPx - 200)+'px');
+            if (!browser.versions.wx && browser.versions.ios && browser.versions.safari) {
+                $('#invitation-container').css('height','100%');
             }
         },
         share:function (params) {
