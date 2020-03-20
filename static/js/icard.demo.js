@@ -1,12 +1,11 @@
 'use strict';
 var ICard = /** @class */ (function () {
     function ICard(params) {
-        this._timestamp = null;
-        this._appid = "wx8557b7376ee5f1cf";
-        this._nonceStr = null;
         this.params = {
-            lng: "25.17668",
-            lat: "38.965962",
+            title:"结婚请柬",
+            desc:"张先生与崔小姐的结婚请柬",
+            lng: "119.119789",
+            lat: "36.71763",
             wishUrl: "/invitation/wish",
             giftUrl: "/invitation/gift",
             giftShop: "/invitation/gift-shop",
@@ -23,9 +22,8 @@ var ICard = /** @class */ (function () {
             music_root: "http://s0.heiguang.com/",
             bullet: 1,
             timer: null,
-            desc:"",
-            city:"",
-            address:""
+            scaleHeight:true,
+            address:"永远市幸福路520号"
         };
         $.extend(this.params, params); //合并参数
         this.init();
@@ -33,38 +31,48 @@ var ICard = /** @class */ (function () {
     ICard.prototype = {
         init: function () {
             var that = this;
-            this.scaleHeight();
+            if(this.params.scaleHeight){
+                this.scaleHeight();
+            }
             new Swiper(".swiper-container", {
                 direction: "vertical",
-                effect: "fade", // cube/fade/coverflow/flip
+                effect : "fade", // cube/fade/coverflow/flip
+                pagination: {
+                    el: ".swiper-pagination",
+                    type: "fraction",
+                    clickable: false
+                },
                 animate: true,
-                autoplay: that.params.autoplay,
-                allowTouchMove: true,
-                observer: true,
-                observeParents: true,
-                observeSlideChildren: true,
-                paginationClickable: true,
-                spaceBetween: 30,
+                allowTouchMove:true,
+                observer:true,
+                observeParents:true,
+                observeSlideChildren:true,
+                paginationClickable:true,
+                spaceBetween:30,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
                 on: {
                     slideChange: function () {
-                        if (this.activeIndex === 0) {
+                        if(this.activeIndex === 0){
                             $(".bullet_widget").hide();
                             $(".x-arrow-bottom").show();
-                        } else {
+                        }else{
                             $(".bullet_widget").show();
                             $(".x-arrow-bottom").hide();
                         }
                         swiperAnimate(this);
                     },
-                    init: function () {
+                    init: function(){
                         swiperAnimate(this); //初始化完成开始动画
                     },
-                    slideChangeTransitionEnd: function () {
+                    slideChangeTransitionEnd: function(){
                         swiperAnimate(this);
                     }
                 }
             });
-            if ($('#map').length > 0) {
+            if ($("#map").length > 0) {
                 // 百度地图API功能
                 var map = new BMap.Map("map", {enableMapClick: false});
                 var point = new BMap.Point(that.params.lng, that.params.lat);
@@ -122,6 +130,7 @@ var ICard = /** @class */ (function () {
                         // console.log("支持自动播放");
                         that.onLoad();
                     } else {
+
                         // console.log("不支持自动播放");
                         $('body').on('click touchstart', function () {
                             that.onLoad();
@@ -133,7 +142,6 @@ var ICard = /** @class */ (function () {
                     that.onLoad();
                 });
             }
-
             // 支持用户点击声音图标自行播放
             $('.music i').on('click', function () {
                 if (that.context) {
@@ -144,6 +152,7 @@ var ICard = /** @class */ (function () {
                     }
                 }
             });
+
 
             //兼容微信6.74 ios12版本
             $("input,textarea,select").blur(function(){
@@ -240,7 +249,7 @@ var ICard = /** @class */ (function () {
         start_timer: function () {
             this.params.timer = setTimeout(function () {
                 scrollTimer = true;
-            }, 5000);
+            }, 5000)
         },
         gift: function () {
             var that = this;
@@ -260,31 +269,8 @@ var ICard = /** @class */ (function () {
                     '</p>' +
                     '<p id="gift-wishes">祝：' + wishWord + '</p>' +
                     '</div>';
-                var hash = $("#invitation-container").attr("data-hash");
-                $.ajax({
-                    url: that.params.giftUrl,
-                    datatype: "json",
-                    type: "post",
-                    data: { // data ：发送给服务器的数据
-                        type: "gift",
-                        name: that.name,
-                        val: that.text,
-                        wishWord: wishWord,
-                        id: id,
-                        hash: hash
-                    },
-                    success: function () {
-                        // alert('发送成功');
-                        wisherAreaGift.empty().append(str);
-                        that.params.giftName.val("");
-                        that.close_gift();
-                        // 函数体，数据发送成功时执行
-                    },
-                    error: function (e) {
-                        console.log('错误: ' + e);
-                        // 函数体，数据发送错误时执行
-                    }
-                });
+                wisherAreaGift.empty().append(str);
+                that.params.giftName.val("");
                 that.close_gift();
                 wisherAreaGift.addClass('fadeOutInLeft');
                 setTimeout(function () {
@@ -335,7 +321,7 @@ var ICard = /** @class */ (function () {
                 data: {
                     type: 'gift',
                     last: last,
-                    icardId: icardId
+                    icardId: 'demo'
                 },
                 success: function (res) {
                     var rs = JSON.parse(res);
@@ -377,30 +363,11 @@ var ICard = /** @class */ (function () {
             var that = this;
             this.name = this.params.wishesName.val();
             this.text = this.params.wishesText.val();
-            this.hash = $('#invitation-container').attr("data-hash");
             var str = '<li><span>' + this.name + '：' + this.text + '</span></li>';
             this.params.wishesName.val("");
             this.params.wishesText.val("");
-            $.ajax({
-                url: that.params.wishUrl,
-                datatype: 'json',
-                type: 'post',
-                data: { // data ：发送给服务器的数据
-                    type: 'wishes',
-                    name: that.name,
-                    text: that.text,
-                    hash: that.hash
-                },
-                success: function () {
-                    //that.params.wishesArea.append(str);//use ajax get data
-                    that.close_wishes();
-                    // 函数体，数据发送成功时执行
-                },
-                error: function (e) {
-                    console.log('错误: ' + e);
-                    // 函数体，数据发送错误时执行
-                }
-            });
+            that.params.wishesArea.append(str);
+            that.close_wishes();
             wishesScroll();
         },
         ajax_wishes: function () {
@@ -414,7 +381,7 @@ var ICard = /** @class */ (function () {
                 data: { // data ：发送给服务器的数据
                     type: 'wishes',
                     last: last,
-                    icardId: icardId
+                    icardId: 'demo',
                 },
                 success: function (res) {
                     var rs = JSON.parse(res);
@@ -461,7 +428,7 @@ var ICard = /** @class */ (function () {
             if (!that.context) {
                 that.context = new (window.AudioContext || window.webkitAudioContext)();
                 that.playAudio(that.context, that.musicUrl);
-                // console.log(that.context);
+                console.log(that.context);
             } else {
                 if (!that.play) {
                     this.context.resume();
@@ -538,18 +505,15 @@ var ICard = /** @class */ (function () {
             var audioMedia = await this.request(url);
             this.context.decodeAudioData(audioMedia, decoded => that.createSound(decoded));
         },
-        
         browser:{
             versions: function () {
                 var u = navigator.userAgent, app = navigator.appVersion;
-                console.log(u);
                 return { //移动终端浏览器版本信息
                     ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
                     android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
                     iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
-                    iPad: u.indexOf('iPad') > -1, //是否iPad,
-                    wx: u.indexOf('MicroMessenger') > -1, //是否微信,
-                    safari: u.indexOf('Safari') > -1, //是否Safari,
+                    iPad: u.indexOf('iPad') > -1, //是否iPad
+                    wx: u.indexOf('MicroMessenger') > -1,
                 };
             }(),
         },
@@ -580,15 +544,11 @@ var ICard = /** @class */ (function () {
             var phoneScale = parseInt(window.screen.width)/720;
             var scaleHeightPx = height/phoneScale;
             if (browser.versions.iPhone || browser.versions.iPad || browser.versions.ios) {
-                // $('#invitation-container').css('height', scaleHeightPx + 'px');
+                $('#invitation-container').css('height','100%');
             }else if(browser.versions.android) {
-                // $('#invitation-container').css('height', scaleHeightPx + 'px');
+                $('#invitation-container').css('height',scaleHeightPx+'px');
             }else{
-                $('#invitation-container').css('height','100%');
-            }
-    
-            if (!browser.versions.wx && browser.versions.ios && browser.versions.safari) {
-                $('#invitation-container').css('height','100%');
+                $('#invitation-container').css('height',scaleHeightPx+'px');
             }
         },
         share:function (params) {
